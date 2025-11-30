@@ -8,5 +8,5 @@ RUN npm run build
 # Step 2: Serve with NGINX
 FROM nginx:stable
 COPY --from=build /app/dist /usr/share/nginx/html
-EXPOSE 8080
+EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
