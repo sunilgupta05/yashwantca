@@ -26,7 +26,7 @@ export default function Header() {
           <Link to="/" className="flex items-center gap-3">
             <img src={logo} alt="Logo" className="h-10 w-auto" />
             <span className="font-semibold text-lg hidden sm:inline tracking-wide">
-              Yashwant CA
+              YashwantKumar & Associates
             </span>
           </Link>
 

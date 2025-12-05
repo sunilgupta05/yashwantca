@@ -9,7 +9,7 @@ export default function Home() {
           <div>
             <h1 className="text-3xl md:text-4xl font-bold mb-4">Professional CA Services — Trust. Accuracy. Compliance.</h1>
             <p className="text-slate-600 mb-6">
-              Yashwant CA offers end-to-end services for incorporations, ROC compliance, taxation, registrations, audits and more.
+              YashwantKumar & Associates offers end-to-end services for incorporations, ROC compliance, taxation, registrations, audits and more.
               We help businesses of all sizes stay compliant and grow.
             </p>
             <div className="flex gap-3">
