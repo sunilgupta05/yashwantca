@@ -31,10 +31,10 @@ export default function Footer() {
           <p className="text-sm text-gray-200">
             ✉️{" "}
             <a
-              href="mailto:contact@yashwantassociates.com?subject=Inquiry&body=Hello%2C%20I%20want%20to%20know%20more%20about%20your%20services."
+              href="mailto:yashwantkumarassociates@gmail.com?subject=Inquiry&body=Hello%2C%20I%20want%20to%20know%20more%20about%20your%20services."
               className="font-medium underline hover:text-white"
             >
-              contact@yashwantassociates.com
+              yashwantkumarassociates@gmail.com
             </a>
           </p>
         </div>

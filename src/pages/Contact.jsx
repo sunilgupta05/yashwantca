@@ -35,7 +35,7 @@ export default function Contact() {
 
   const phoneE164 = "+918286956020";
   const displayPhone = "+91 82869 56020";
-  const email = "contact@yashwantassociates.com";
+  const email = "yashwantkumarassociates@gmail.com";
 
   const mailSubject = encodeURIComponent("Website Inquiry");
   const mailBody = encodeURIComponent(
