@@ -97,7 +97,7 @@ export default function Contact() {
                 <strong>Email:</strong><br />
                 <a
                   href={`mailto:${email}?subject=${mailSubject}&body=${mailBody}`}
-                  className="underline hover:text-blue-200"
+                  className="underline hover:text-blue-200 break-all"
                 >
                   {email}
                 </a>
