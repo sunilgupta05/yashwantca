@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import emailjs from "emailjs-com";
 
 import {
@@ -12,23 +12,40 @@ import {
 export default function Contact() {
   const formRef = useRef();
 
+  const [sending, setSending] = useState(false);     // disable button state
+  const [popup, setPopup] = useState(null);         // success/failure popup
+
   const sendEmail = (e) => {
     e.preventDefault();
 
+    setSending(true); // temporarily disable button only while sending
+
     emailjs
       .sendForm(
-        "service_z3j30zq",      // ⭐ Replace with your EmailJS Service ID
-        "template_tnl0031",     // ⭐ Replace with your EmailJS Template ID
+        "service_z3j30zq",
+        "template_tnl0031",
         formRef.current,
-        "yjF_WVdDlTwyukK7D"       // ⭐ Replace with your EmailJS Public Key
+        "yjF_WVdDlTwyukK7D"
       )
       .then(
         () => {
-          alert("Message sent successfully!");
+          setPopup({ type: "success", message: "Your message has been sent!" });
           formRef.current.reset();
+
+          // Disable button for 3 seconds ONLY on success
+          setTimeout(() => {
+            setSending(false);
+            setPopup(null);
+          }, 3000);
         },
         () => {
-          alert("Failed to send message. Please try again.");
+          setPopup({ type: "error", message: "Failed to send message. Try again!" });
+
+          // Do NOT disable button on failed attempt
+          setSending(false);
+
+          // auto-hide error popup after 3 seconds
+          setTimeout(() => setPopup(null), 3000);
         }
       );
   };
@@ -43,11 +60,21 @@ export default function Contact() {
   );
 
   return (
-    <section className="py-10 px-4">
+    <section className="py-10 px-4 relative">
+
+      {/* POPUP MESSAGE */}
+      {popup && (
+        <div
+          className={`fixed top-5 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded shadow-lg text-white z-50
+          ${popup.type === "success" ? "bg-green-600" : "bg-red-600"}`}
+        >
+          {popup.message}
+        </div>
+      )}
+
       <div className="bg-white p-6 rounded-lg shadow max-w-5xl mx-auto">
         <h2 className="text-3xl font-semibold mb-8 text-center">Contact Us</h2>
 
-        {/* Responsive Two-Column Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
           {/* LEFT SECTION */}
@@ -95,10 +122,9 @@ export default function Contact() {
             </p>
           </div>
 
-          {/* RIGHT SECTION — Form */}
+          {/* RIGHT SECTION — FORM */}
           <div>
             <form ref={formRef} className="space-y-4" onSubmit={sendEmail}>
-
               <div>
                 <label className="block text-sm font-medium mb-1 flex items-center gap-2">
                   <UserIcon className="w-5 h-5 text-blue-900" /> Name
@@ -150,9 +176,11 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="px-4 py-2 bg-blue-900 text-white rounded hover:bg-blue-800 transition w-full md:w-auto"
+                disabled={sending}
+                className={`px-4 py-2 text-white rounded transition w-full md:w-auto
+                  ${sending ? "bg-gray-500 cursor-not-allowed" : "bg-blue-900 hover:bg-blue-800"}`}
               >
-                Send Message
+                {sending ? "Sending..." : "Send Message"}
               </button>
 
             </form>
