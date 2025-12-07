@@ -87,7 +87,7 @@ export default function Contact() {
               <MapPinIcon className="w-6 h-6 text-blue-200" />
               <span>
                 <strong>Address:</strong><br />
-                123 Business Square, Mumbai, Maharashtra, India
+                Ramabai Colony, Ghatkopar East, Mumbai 400072, Maharashtra, India
               </span>
             </p>
 
